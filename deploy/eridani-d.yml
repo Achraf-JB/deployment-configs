@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eridani-d
+  labels:
+      app.kubernetes.io/name: eridani-d
+      app.kubernetes.io/instance: eridani-d-discovery-challenge
+      app.kubernetes.io/component: publisher
+      app.kubernetes.io/part-of: discovery-challenge
+      app.kubernetes.io/managed-by: kubectl
+      app.kubernetes.io/version: 0.1.0
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: eridani-d
+      app.kubernetes.io/instance: eridani-d-discovery-challenge
+  template:
+    metadata:
+      labels:
+          app.kubernetes.io/name: eridani-d
+          app.kubernetes.io/instance: eridani-d-discovery-challenge
+          app.kubernetes.io/component: publisher
+          app.kubernetes.io/part-of: discovery-challenge
+          app.kubernetes.io/managed-by: kubectl
+          app.kubernetes.io/version: 0.1.0
+    spec:
+      containers:
+        - name: eridani-d
+          image: achraf899/eridanid:dev
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: BROKER_CONN_STRING
+              value: "amqp://guest:guest@rabbitmq:5672/"
+      initContainers:
+        - name: init-broker
+          image: ${{secrets.DOCKER_HUB_USER}}/eridani:v${{ github.run_number }}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: BROKER_CONN_STRING
+              value: "amqp://guest:guest@rabbitmq:5672/"
+      imagePullSecrets:
+        - name: my-docker-secret  
