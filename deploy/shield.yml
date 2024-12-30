@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: shield-service
-        image: ${{secrets.DOCKER_HUB_USER}}/shield:v${{ github.run_number }}
+        image: achraf899/shield:v26
         env:
         - name: BROKER_CONN_STRING
           value: "amqp://guest:guest@rabbitmq:5672/"
