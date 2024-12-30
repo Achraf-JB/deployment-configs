@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: eridani-d
-          image: achraf899/eridani:v20
+          image: achraf899/eridani:v26
           imagePullPolicy: IfNotPresent
           env:
             - name: BROKER_CONN_STRING
