@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: shield-service
-        image: achraf899/shield:v29
+        image: achraf899/shield:v30
         env:
         - name: BROKER_CONN_STRING
           value: "amqp://guest:guest@rabbitmq:5672/"
