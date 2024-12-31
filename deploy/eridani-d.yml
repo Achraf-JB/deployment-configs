@@ -27,14 +27,14 @@ spec:
     spec:
       containers:
         - name: eridani-d
-          image: achraf899/eridani:v30
+          image: achraf899/eridani:v34
           imagePullPolicy: IfNotPresent
           env:
             - name: BROKER_CONN_STRING
               value: "amqp://guest:guest@rabbitmq:5672/"
       initContainers:
         - name: init-broker
-          image: achraf899/simulation:v30
+          image: achraf899/simulation:v34
           imagePullPolicy: IfNotPresent
           env:
             - name: BROKER_CONN_STRING
