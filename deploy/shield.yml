@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: shield-service
 spec:
-  replicas: 5
+  replicas: 10
   selector:
     matchLabels:
       app: shield
@@ -43,7 +43,7 @@ spec:
     kind: Deployment
     name: shield-service
   minReplicas: 1
-  maxReplicas: 12
+  maxReplicas: 15
   metrics:
   - type: Resource
     resource:
