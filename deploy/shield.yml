@@ -25,6 +25,13 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        initContainers:
+        - name: init-broker
+          image: achraf899/simulation:v39
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: BROKER_CONN_STRING
+              value: "amqp://guest:guest@rabbitmq:5672/"     
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -43,4 +50,4 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 5
