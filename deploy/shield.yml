@@ -43,7 +43,7 @@ spec:
     kind: Deployment
     name: shield-service
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 12
   metrics:
   - type: Resource
     resource:
